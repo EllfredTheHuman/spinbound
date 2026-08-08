@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+
+/* =====================================================
+   RESET
+===================================================== */
+
 * {
     box-sizing: border-box;
     image-rendering: pixelated;
@@ -13,100 +18,69 @@ body {
 }
 
 body {
+
     min-height: 100vh;
 
     font-family: "Press Start 2P", monospace;
 
-    color: #d8d4c3;
+    color: #c8c5b5;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background: #030504;
 
     overflow-x: hidden;
-
-    position: relative;
-
-    /*
-        ROT / DAMP CONCRETE
-    */
-
-    background:
-        radial-gradient(
-            ellipse at 20% 30%,
-            rgba(48, 63, 38, 0.22),
-            transparent 25%
-        ),
-
-        radial-gradient(
-            ellipse at 80% 70%,
-            rgba(42, 55, 34, 0.18),
-            transparent 30%
-        ),
-
-        radial-gradient(
-            ellipse at 50% 15%,
-            rgba(122, 105, 62, 0.07),
-            transparent 30%
-        ),
-
-        repeating-linear-gradient(
-            0deg,
-            rgba(255,255,255,0.012) 0px,
-            rgba(255,255,255,0.012) 3px,
-            transparent 3px,
-            transparent 11px
-        ),
-
-        #090a09;
 }
 
 
 /* =====================================================
-   MOULD / ROT
+   WAREHOUSE
 ===================================================== */
 
-body::before {
+.warehouse {
 
-    content: "";
+    min-height: 100vh;
 
-    position: fixed;
+    position: relative;
 
-    inset: 0;
+    display: flex;
 
-    pointer-events: none;
+    justify-content: center;
 
-    opacity: 0.65;
+    align-items: center;
+
+    padding: 60px 20px;
+
+    overflow: hidden;
 
     background:
 
+        /* sickly light */
         radial-gradient(
-            ellipse at 8% 20%,
-            rgba(54, 77, 43, 0.45) 0%,
-            rgba(39, 56, 35, 0.2) 8%,
-            transparent 18%
+            ellipse at 50% 0%,
+            rgba(112, 108, 60, 0.13),
+            transparent 32%
+        ),
+
+        /* mould */
+        radial-gradient(
+            ellipse at 5% 35%,
+            rgba(31, 55, 30, 0.38),
+            transparent 22%
         ),
 
         radial-gradient(
-            ellipse at 92% 32%,
-            rgba(48, 68, 39, 0.4) 0%,
-            rgba(38, 53, 32, 0.15) 9%,
-            transparent 20%
+            ellipse at 95% 65%,
+            rgba(28, 49, 28, 0.34),
+            transparent 24%
         ),
 
+        /* darkness */
         radial-gradient(
-            ellipse at 15% 80%,
-            rgba(48, 70, 39, 0.35),
-            transparent 20%
+            ellipse at center,
+            transparent 20%,
+            rgba(0,0,0,0.72) 100%
         ),
 
-        radial-gradient(
-            ellipse at 83% 82%,
-            rgba(42, 63, 37, 0.35),
-            transparent 20%
-        );
-
-    z-index: -5;
+        #080a08;
 }
 
 
@@ -114,42 +88,138 @@ body::before {
    FLOOR
 ===================================================== */
 
-body::after {
+.warehouse::after {
 
     content: "";
 
-    position: fixed;
+    position: absolute;
 
     left: 0;
     right: 0;
     bottom: 0;
 
-    height: 25vh;
+    height: 22%;
 
     background:
 
         repeating-linear-gradient(
             90deg,
-            #070807 0px,
-            #070807 4px,
-            #101110 4px,
-            #101110 8px
-        ),
-
-        repeating-linear-gradient(
-            0deg,
-            transparent 0px,
-            transparent 38px,
-            rgba(255,255,255,0.025) 39px,
-            transparent 41px
+            #050605 0px,
+            #050605 5px,
+            #0c0e0c 5px,
+            #0c0e0c 11px
         );
 
-    border-top: 6px solid #050605;
+    border-top: 7px solid #020302;
 
     box-shadow:
-        inset 0 15px 30px rgba(0,0,0,0.9);
+        inset 0 15px 30px #000;
 
-    z-index: -4;
+    opacity: 0.8;
+
+    z-index: 0;
+}
+
+
+/* =====================================================
+   MOULD
+===================================================== */
+
+.mould {
+
+    position: absolute;
+
+    background:
+        radial-gradient(
+            circle,
+            #1c3b21 0%,
+            #142b19 35%,
+            transparent 70%
+        );
+
+    filter: blur(1px);
+
+    opacity: 0.55;
+
+    z-index: 1;
+}
+
+
+.mould-one {
+
+    width: 260px;
+    height: 300px;
+
+    left: -70px;
+    top: 80px;
+
+    transform: rotate(-20deg);
+}
+
+
+.mould-two {
+
+    width: 230px;
+    height: 270px;
+
+    right: -60px;
+    top: 170px;
+
+    transform: rotate(15deg);
+}
+
+
+.mould-three {
+
+    width: 300px;
+    height: 180px;
+
+    left: 35%;
+    bottom: -80px;
+
+    opacity: 0.3;
+}
+
+
+/* =====================================================
+   WALL CRACKS
+===================================================== */
+
+.crack {
+
+    position: absolute;
+
+    width: 3px;
+
+    background: #151915;
+
+    z-index: 2;
+
+    opacity: 0.7;
+}
+
+
+.crack-one {
+
+    height: 230px;
+
+    left: 13%;
+
+    top: 5%;
+
+    transform: rotate(17deg);
+}
+
+
+.crack-two {
+
+    height: 170px;
+
+    right: 16%;
+
+    bottom: 15%;
+
+    transform: rotate(-25deg);
 }
 
 
@@ -159,139 +229,36 @@ body::after {
 
 .game {
 
-    width: 1050px;
+    width: 1080px;
 
-    max-width: 94vw;
-
-    min-height: 650px;
-
-    margin: 50px auto;
-
-    padding: 32px;
+    max-width: 96vw;
 
     position: relative;
 
-    display: grid;
-
-    grid-template-columns: 1.15fr 0.85fr;
-
-    grid-template-rows: auto 1fr auto;
-
-    gap: 25px;
+    z-index: 5;
 
     background:
-
-        radial-gradient(
-            ellipse at 20% 30%,
-            rgba(57, 63, 43, 0.09),
-            transparent 35%
-        ),
 
         repeating-linear-gradient(
             0deg,
             rgba(255,255,255,0.012) 0px,
-            rgba(255,255,255,0.012) 3px,
-            transparent 3px,
-            transparent 9px
+            rgba(255,255,255,0.012) 2px,
+            transparent 2px,
+            transparent 8px
         ),
 
-        #161715;
+        #111311;
 
-    border: 12px solid #050605;
-
-    box-shadow:
-
-        0 0 0 5px #292a24,
-
-        15px 15px 0 #020302,
-
-        inset 0 0 0 5px #0a0b09,
-
-        inset 0 0 70px rgba(0,0,0,0.8);
-
-    transform: translateY(15px);
-}
-
-
-/* =====================================================
-   OVERHEAD LIGHT
-===================================================== */
-
-.game::before {
-
-    content: "";
-
-    position: fixed;
-
-    width: 130px;
-
-    height: 30px;
-
-    top: -25px;
-
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    background: #b8ae76;
-
-    border: 6px solid #050605;
+    border: 12px solid #030403;
 
     box-shadow:
 
-        0 0 25px 8px rgba(180,170,110,0.12),
+        0 0 0 5px #252821,
 
-        0 0 100px 35px rgba(180,170,110,0.05);
+        18px 18px 0 #000,
 
-    animation: flicker 6s infinite;
+        inset 0 0 60px rgba(0,0,0,0.9);
 
-    z-index: -2;
-}
-
-
-@keyframes flicker {
-
-    0%,
-    12%,
-    18%,
-    45%,
-    48%,
-    55%,
-    100% {
-        opacity: 0.7;
-    }
-
-    13% {
-        opacity: 0.15;
-    }
-
-    14% {
-        opacity: 0.65;
-    }
-
-    16% {
-        opacity: 0.25;
-    }
-
-    17% {
-        opacity: 0.7;
-    }
-
-    46% {
-        opacity: 0.1;
-    }
-
-    47% {
-        opacity: 0.6;
-    }
-
-    49% {
-        opacity: 0.25;
-    }
-
-    50% {
-        opacity: 0.7;
-    }
 }
 
 
@@ -301,13 +268,37 @@ body::after {
 
 header {
 
-    grid-column: 1 / 3;
+    height: 105px;
 
-    padding-bottom: 20px;
+    padding: 25px 30px;
 
-    border-bottom: 5px solid #050605;
+    display: flex;
 
-    text-align: left;
+    align-items: center;
+
+    gap: 20px;
+
+    border-bottom: 7px solid #030403;
+
+    background: #0a0c0a;
+}
+
+
+.warning {
+
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #8c8552;
+
+    border: 5px solid #29291f;
+
+    font-size: 25px;
 }
 
 
@@ -315,74 +306,87 @@ header h1 {
 
     margin: 0;
 
-    font-size: 42px;
+    font-size: 38px;
+
+    color: #96905d;
 
     letter-spacing: 4px;
 
-    color: #aaa16b;
-
     text-shadow:
-        4px 4px 0 #050605;
+        4px 4px 0 #000;
 }
 
 
 header p {
 
-    margin: 12px 0 0;
+    margin: 10px 0 0;
 
     font-size: 8px;
 
-    color: #55584e;
+    color: #45483e;
 
-    letter-spacing: 2px;
+    letter-spacing: 3px;
 }
 
 
 /* =====================================================
-   WHEEL AREA
+   MAIN CONTENT
 ===================================================== */
 
-.wheel-area {
+.game-content {
 
-    grid-column: 1;
+    display: grid;
 
-    grid-row: 2;
+    grid-template-columns: 1.15fr 0.85fr;
 
-    min-height: 450px;
+    gap: 25px;
+
+    padding: 25px;
+}
+
+
+/* =====================================================
+   WHEEL PANEL
+===================================================== */
+
+.wheel-panel {
+
+    min-height: 535px;
+
+    position: relative;
 
     display: flex;
 
     flex-direction: column;
 
-    justify-content: center;
-
     align-items: center;
 
-    position: relative;
+    justify-content: center;
 
-    /*
-        Push wheel down slightly
-    */
+    padding-top: 25px;
 
-    padding-top: 45px;
+    background: #070907;
 
-    background:
-
-        radial-gradient(
-            ellipse at center,
-            rgba(45,47,38,0.08),
-            transparent 65%
-        ),
-
-        #0c0d0c;
-
-    border: 8px solid #050605;
+    border: 8px solid #030403;
 
     box-shadow:
 
-        inset 0 0 0 4px #1d1e1a,
+        inset 0 0 0 4px #1c201a,
 
-        inset 0 0 60px rgba(0,0,0,0.9);
+        inset 0 0 70px #000;
+}
+
+
+.panel-label {
+
+    position: absolute;
+
+    left: 18px;
+    top: 15px;
+
+    font-size: 7px;
+
+    color: #3d4238;
 }
 
 
@@ -390,34 +394,61 @@ header p {
    WHEEL
 ===================================================== */
 
+.wheel-wrapper {
+
+    position: relative;
+
+    margin-top: 25px;
+}
+
+
+.pointer {
+
+    position: absolute;
+
+    top: -24px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 20;
+
+    color: #a39b61;
+
+    font-size: 32px;
+
+    text-shadow:
+        4px 4px 0 #000;
+}
+
+
 .wheel {
 
-    width: 330px;
-
-    height: 330px;
+    width: 350px;
+    height: 350px;
 
     position: relative;
 
     border-radius: 50%;
 
-    border: 14px solid #030403;
-
     background:
-
         conic-gradient(
-            #3d7147 0deg 90deg,
-            #315d3a 90deg 180deg,
-            #733d3d 180deg 270deg,
-            #5d3232 270deg 360deg
+            #315b39 0deg 90deg,
+            #3d7047 90deg 180deg,
+            #5a3030 180deg 270deg,
+            #733b3b 270deg 360deg
         );
+
+    border: 15px solid #020302;
 
     box-shadow:
 
-        0 0 0 7px #383a32,
+        0 0 0 7px #34372e,
 
-        0 0 0 13px #030403,
+        0 0 0 13px #010201,
 
-        12px 12px 0 #010201;
+        14px 14px 0 #000;
 
     transition:
         transform 2.5s cubic-bezier(.12,.8,.18,1);
@@ -425,7 +456,7 @@ header p {
 
 
 /* =====================================================
-   WHEEL ROT
+   WHEEL DETAILS
 ===================================================== */
 
 .wheel::before {
@@ -438,66 +469,32 @@ header p {
 
     border-radius: 50%;
 
-    border: 7px dashed #151715;
+    border: 7px dashed #111410;
 
     box-shadow:
-
-        inset 0 0 0 6px rgba(0,0,0,0.35),
-
-        inset 0 0 30px rgba(0,0,0,0.25);
+        inset 0 0 35px rgba(0,0,0,0.6);
 }
 
 
-/* =====================================================
-   CENTRE
-===================================================== */
-
-.wheel-center {
-
-    position: absolute;
-
-    width: 72px;
-
-    height: 72px;
-
-    left: 50%;
-
-    top: 50%;
-
-    transform: translate(-50%, -50%);
-
-    background: #99905a;
-
-    border: 9px solid #030403;
-
-    border-radius: 50%;
-
-    z-index: 10;
-
-    box-shadow:
-        6px 6px 0 #010201;
-}
-
-
-.wheel-center::after {
+.wheel::after {
 
     content: "";
 
     position: absolute;
 
-    width: 17px;
-
-    height: 17px;
-
     left: 50%;
 
-    top: 50%;
+    top: 0;
 
-    transform: translate(-50%, -50%);
+    width: 7px;
 
-    background: #171815;
+    height: 100%;
 
-    border: 5px solid #030403;
+    background: #090b09;
+
+    transform: translateX(-50%);
+
+    z-index: 4;
 }
 
 
@@ -505,7 +502,7 @@ header p {
    WHEEL TEXT
 ===================================================== */
 
-.wheel-text {
+.wheel-segment {
 
     position: absolute;
 
@@ -513,70 +510,96 @@ header p {
 
     transform: translateY(-50%);
 
-    z-index: 6;
+    z-index: 7;
 
     font-size: 17px;
 
-    color: #c8c5b3;
+    color: #bcb9a9;
 
     text-shadow:
-        4px 4px 0 #050605;
+        4px 4px 0 #000;
 }
 
 
 .win {
-    left: 42px;
+    left: 43px;
 }
 
 
 .lose {
-    right: 30px;
+    right: 31px;
 }
 
 
 /* =====================================================
-   POINTER
+   HUB
 ===================================================== */
 
-.pointer {
+.wheel-hub {
 
     position: absolute;
 
-    top: 40px;
+    width: 78px;
+    height: 78px;
 
-    z-index: 20;
+    left: 50%;
+    top: 50%;
 
-    font-size: 36px;
+    transform: translate(-50%, -50%);
 
-    color: #aaa16b;
+    background: #8c8653;
 
-    text-shadow:
-        4px 4px 0 #030403;
+    border: 10px solid #020302;
+
+    border-radius: 50%;
+
+    z-index: 10;
+
+    box-shadow:
+        7px 7px 0 #000;
+}
+
+
+.hub-center {
+
+    width: 20px;
+    height: 20px;
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    background: #121510;
+
+    border: 5px solid #020302;
 }
 
 
 /* =====================================================
-   SPIN BUTTON
+   SPIN
 ===================================================== */
 
 #spinButton {
 
-    margin-top: 45px;
+    margin-top: 48px;
 
-    padding: 18px 50px;
+    padding: 19px 55px;
 
     font-family: "Press Start 2P", monospace;
 
     font-size: 15px;
 
-    color: #161711;
+    background: #9b9258;
 
-    background: #aaa16b;
+    color: #11130e;
 
-    border: 7px solid #030403;
+    border: 7px solid #020302;
 
     box-shadow:
-        7px 7px 0 #010201;
+        8px 8px 0 #000;
 
     cursor: pointer;
 }
@@ -584,18 +607,18 @@ header p {
 
 #spinButton:hover {
 
-    background: #c2b879;
+    background: #b1a765;
 
     transform: translate(3px, 3px);
 
     box-shadow:
-        4px 4px 0 #010201;
+        5px 5px 0 #000;
 }
 
 
 #spinButton:active {
 
-    transform: translate(7px, 7px);
+    transform: translate(8px, 8px);
 
     box-shadow: none;
 }
@@ -615,75 +638,86 @@ header p {
 
 #result {
 
-    min-height: 22px;
+    margin-top: 25px;
 
-    margin-top: 22px;
+    min-height: 18px;
 
-    font-size: 10px;
+    font-size: 9px;
 
-    color: #aaa16b;
+    color: #77735a;
 
     text-shadow:
-        3px 3px 0 #030403;
+        3px 3px 0 #000;
 }
 
 
 /* =====================================================
-   RIGHT SIDE STATS
+   RIGHT INFORMATION
 ===================================================== */
 
-.stats {
-
-    grid-column: 2;
-
-    grid-row: 2;
-
-    margin: 0;
+.information {
 
     display: flex;
 
     flex-direction: column;
 
     gap: 12px;
-
-    justify-content: flex-start;
 }
 
 
-.stat {
+/* =====================================================
+   STAT BOXES
+===================================================== */
 
-    width: 100%;
+.stat-box {
 
-    padding: 17px;
+    padding: 18px;
 
-    background: #101110;
+    background: #090b09;
 
     border: 6px solid #030403;
 
     box-shadow:
-        5px 5px 0 #010201;
-
-    text-align: left;
+        5px 5px 0 #000;
 }
 
 
-.stat span {
+.stat-box span {
 
     display: block;
 
-    margin-bottom: 10px;
+    margin-bottom: 11px;
 
     font-size: 8px;
 
-    color: #55584e;
+    color: #4b4e45;
 }
 
 
-.stat strong {
+.stat-box strong {
 
-    font-size: 20px;
+    font-size: 23px;
 
-    color: #aaa16b;
+    color: #9b9258;
+
+    text-shadow:
+        3px 3px 0 #000;
+}
+
+
+/* =====================================================
+   SPINS
+===================================================== */
+
+.spins-box {
+
+    border-color: #302f20;
+}
+
+
+.spins-box strong {
+
+    color: #b5aa66;
 }
 
 
@@ -691,42 +725,38 @@ header p {
    UPGRADES
 ===================================================== */
 
-.upgrade-section {
+.upgrade-box {
 
-    grid-column: 2;
-
-    grid-row: 2;
-
-    margin-top: 175px;
+    margin-top: 5px;
 
     padding: 18px;
 
-    align-self: start;
-
-    background: #111210;
+    background: #090b09;
 
     border: 6px solid #030403;
 
     box-shadow:
-        6px 6px 0 #010201;
+        5px 5px 0 #000;
 }
 
 
-.upgrade-title {
+.upgrade-header {
 
     display: flex;
 
     justify-content: space-between;
 
-    margin-bottom: 18px;
+    gap: 10px;
 
-    padding-bottom: 12px;
+    padding-bottom: 14px;
 
-    border-bottom: 4px solid #030403;
+    margin-bottom: 14px;
 
-    font-size: 8px;
+    border-bottom: 4px solid #020302;
 
-    color: #aaa16b;
+    font-size: 7px;
+
+    color: #77735a;
 }
 
 
@@ -737,8 +767,6 @@ header p {
     flex-direction: column;
 
     gap: 9px;
-
-    min-height: 50px;
 }
 
 
@@ -752,33 +780,33 @@ header p {
 
     font-size: 8px;
 
-    line-height: 1.6;
+    line-height: 1.5;
 
-    color: #bcb9aa;
+    text-align: left;
 
-    background: #282923;
+    color: #aaa99c;
+
+    background: #1c1e1a;
 
     border: 5px solid #030403;
 
     box-shadow:
-        4px 4px 0 #010201;
+        4px 4px 0 #000;
 
     cursor: pointer;
-
-    text-align: left;
 }
 
 
 .upgrade-list button:hover {
 
-    background: #37382f;
+    background: #2b2d27;
 
-    color: #ddd8c5;
+    color: #d1cebb;
 
     transform: translate(2px, 2px);
 
     box-shadow:
-        2px 2px 0 #010201;
+        2px 2px 0 #000;
 }
 
 
@@ -786,39 +814,35 @@ header p {
 
     padding: 12px;
 
-    font-size: 8px;
-
-    color: #4c4e47;
-
     text-align: center;
+
+    font-size: 7px;
+
+    color: #383c35;
 }
 
 
 /* =====================================================
-   ROUND
+   FOOTER
 ===================================================== */
 
-.round {
+footer {
 
-    grid-column: 1 / 3;
-
-    grid-row: 3;
-
-    padding-top: 15px;
-
-    border-top: 5px solid #050605;
-
-    font-size: 8px;
-
-    color: #4c4e47;
+    padding: 15px;
 
     text-align: center;
+
+    border-top: 6px solid #030403;
+
+    color: #383b34;
+
+    font-size: 8px;
 }
 
 
-.round span {
+footer span {
 
-    color: #aaa16b;
+    color: #96905d;
 }
 
 
@@ -852,20 +876,20 @@ header p {
 
 .game-over-box {
 
-    width: 500px;
+    width: 520px;
 
     max-width: 90%;
 
-    padding: 40px;
-
-    background: #151615;
-
-    border: 9px solid #030403;
-
-    box-shadow:
-        10px 10px 0 #010201;
+    padding: 45px;
 
     text-align: center;
+
+    background: #090b09;
+
+    border: 10px solid #020302;
+
+    box-shadow:
+        12px 12px 0 #000;
 }
 
 
@@ -873,12 +897,12 @@ header p {
 
     margin: 0;
 
-    font-size: 30px;
+    font-size: 27px;
 
-    color: #864545;
+    color: #743d3d;
 
     text-shadow:
-        4px 4px 0 #030403;
+        4px 4px 0 #000;
 }
 
 
@@ -886,30 +910,30 @@ header p {
 
     margin: 30px 0;
 
-    font-size: 9px;
+    font-size: 8px;
 
     line-height: 2;
 
-    color: #77776e;
+    color: #5a5c54;
 }
 
 
 #restartButton {
 
-    padding: 16px 25px;
+    padding: 17px 25px;
 
     font-family: "Press Start 2P", monospace;
 
-    font-size: 9px;
+    font-size: 8px;
 
-    background: #aaa16b;
+    color: #11130e;
 
-    color: #10110e;
+    background: #9b9258;
 
-    border: 6px solid #030403;
+    border: 6px solid #020302;
 
     box-shadow:
-        5px 5px 0 #010201;
+        5px 5px 0 #000;
 
     cursor: pointer;
 }
@@ -919,86 +943,46 @@ header p {
    MOBILE
 ===================================================== */
 
-@media (max-width: 800px) {
+@media (max-width: 850px) {
 
-    .game {
+    .warehouse {
+
+        padding: 25px 10px;
+
+    }
+
+
+    .game-content {
 
         grid-template-columns: 1fr;
 
-        grid-template-rows:
-            auto
-            auto
-            auto
-            auto
-            auto;
     }
 
 
-    header {
+    .wheel-panel {
 
-        grid-column: 1;
+        min-height: 500px;
+
     }
 
 
-    .wheel-area {
+    .information {
 
         grid-column: 1;
 
-        grid-row: 2;
-
-        padding-top: 35px;
-    }
-
-
-    .stats {
-
-        grid-column: 1;
-
-        grid-row: 3;
-
-        flex-direction: row;
-
-        flex-wrap: wrap;
-    }
-
-
-    .stat {
-
-        flex: 1;
-
-        min-width: 150px;
-    }
-
-
-    .upgrade-section {
-
-        grid-column: 1;
-
-        grid-row: 4;
-
-        margin-top: 0;
-    }
-
-
-    .round {
-
-        grid-column: 1;
-
-        grid-row: 5;
     }
 
 
     .wheel {
 
-        width: 260px;
-
-        height: 260px;
+        width: 280px;
+        height: 280px;
     }
 
 
     header h1 {
 
-        font-size: 30px;
+        font-size: 28px;
     }
 
 }
