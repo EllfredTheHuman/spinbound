@@ -165,91 +165,101 @@ header p {
 
 
 /* =========================
-   WHEEL AREA
-========================= */
-
-.wheel-area {
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    position: relative;
-}
-
-
-/* =========================
-   POINTER
-========================= */
-
-.pointer {
-
-    position: absolute;
-
-    top: -24px;
-
-    z-index: 20;
-
-    font-size: 32px;
-
-    color: #ffe45c;
-
-    text-shadow:
-        3px 3px 0 #080711;
-}
-
-
-/* =========================
-   WHEEL
+   PIXEL WHEEL
 ========================= */
 
 .wheel {
-
-    width: 310px;
-
-    height: 310px;
+    width: 300px;
+    height: 300px;
 
     position: relative;
 
+    /* No smooth circle border */
     border-radius: 50%;
 
-    border: 10px solid #080711;
+    border: 12px solid #090712;
 
     background:
         conic-gradient(
-            #46d477 0deg 180deg,
-            #e64f5c 180deg 360deg
+            #4bd477 0deg 180deg,
+            #e6535d 180deg 360deg
         );
 
     box-shadow:
-        8px 8px 0 #080711;
+        8px 8px 0 #090712;
 
     transition:
         transform 2.5s cubic-bezier(.12,.8,.18,1);
+
+    /* Makes the edges feel less anti-aliased */
+    image-rendering: pixelated;
+}
+
+
+/* Pixel-like outer bolts */
+
+.wheel::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 12px;
+
+    border: 6px solid #171329;
+
+    border-radius: 50%;
+
+    box-shadow:
+        inset 0 0 0 5px #090712;
+}
+
+
+/* Centre */
+
+.wheel-center {
+
+    position: absolute;
+
+    width: 70px;
+    height: 70px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    background: #ffe45c;
+
+    border: 8px solid #090712;
+
+    border-radius: 50%;
+
+    z-index: 10;
+
+    box-shadow:
+        5px 5px 0 #090712;
 }
 
 
 /* Wheel divider */
 
-.wheel::before {
+.wheel::after {
 
     content: "";
 
     position: absolute;
 
-    width: 6px;
-
+    width: 8px;
     height: 100%;
 
-    background: #080711;
+    background: #090712;
 
     left: 50%;
-
     top: 0;
 
     transform: translateX(-50%);
+
+    z-index: 3;
 }
 
 
@@ -265,54 +275,48 @@ header p {
 
     transform: translateY(-50%);
 
-    z-index: 5;
+    z-index: 6;
+
+    font-family: "Press Start 2P", monospace;
 
     font-size: 18px;
 
+    color: white;
+
     text-shadow:
-        3px 3px 0 #080711;
+        4px 4px 0 #090712;
 }
 
 
 .win {
-
     left: 35px;
 }
 
 
 .lose {
-
     right: 25px;
 }
 
 
 /* =========================
-   WHEEL CENTRE
+   PIXEL POINTER
 ========================= */
 
-.wheel-center {
+.pointer {
 
     position: absolute;
 
-    width: 65px;
+    top: -32px;
 
-    height: 65px;
+    z-index: 20;
 
-    left: 50%;
+    font-size: 36px;
 
-    top: 50%;
+    color: #ffe45c;
 
-    transform: translate(-50%, -50%);
-
-    border-radius: 50%;
-
-    background: #ffe45c;
-
-    border: 7px solid #080711;
-
-    z-index: 10;
+    text-shadow:
+        4px 4px 0 #090712;
 }
-
 
 /* =========================
    SPIN BUTTON
