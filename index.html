@@ -12,104 +12,197 @@
 
 <body>
 
-    <main class="game">
+    <div class="warehouse">
 
-        <header>
-            <h1>SPINBOUND</h1>
-            <p>HOW FAR CAN YOU SPIN?</p>
-        </header>
+        <!-- Creepy background details -->
+        <div class="mould mould-one"></div>
+        <div class="mould mould-two"></div>
+        <div class="mould mould-three"></div>
 
-
-        <!-- STATS -->
-
-        <section class="stats">
-
-            <div class="stat">
-                <span>MONEY</span>
-                <strong id="money">$100</strong>
-            </div>
-
-            <div class="stat">
-                <span>QUOTA</span>
-                <strong id="quota">$150</strong>
-            </div>
-
-            <div class="stat">
-                <span>SPINS</span>
-                <strong id="spins">10</strong>
-            </div>
-
-        </section>
+        <div class="crack crack-one"></div>
+        <div class="crack crack-two"></div>
 
 
-        <!-- WHEEL -->
+        <!-- Main machine -->
 
-        <section class="wheel-area">
+        <main class="game">
 
-            <div class="pointer">▼</div>
+            <header>
 
-            <div class="wheel" id="wheel">
-
-                <div class="wheel-text win">
-                    WIN
+                <div class="warning">
+                    ⚠
                 </div>
 
-                <div class="wheel-text lose">
-                    LOSE
+                <div>
+                    <h1>SPINBOUND</h1>
+                    <p>KEEP SPINNING.</p>
                 </div>
 
-                <div class="wheel-center"></div>
+            </header>
+
+
+            <div class="game-content">
+
+
+                <!-- =========================
+                     LEFT SIDE
+                ========================== -->
+
+                <section class="wheel-panel">
+
+                    <div class="panel-label">
+                        // MACHINE 01
+                    </div>
+
+                    <div class="wheel-wrapper">
+
+                        <div class="pointer">
+                            ▼
+                        </div>
+
+                        <div class="wheel" id="wheel">
+
+                            <div class="wheel-segment win">
+                                WIN
+                            </div>
+
+                            <div class="wheel-segment lose">
+                                LOSE
+                            </div>
+
+                            <div class="wheel-hub">
+
+                                <div class="hub-center"></div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <button id="spinButton">
+                        SPIN
+                    </button>
+
+
+                    <div id="result">
+                        INSERT COURAGE.
+                    </div>
+
+                </section>
+
+
+
+                <!-- =========================
+                     RIGHT SIDE
+                ========================== -->
+
+                <section class="information">
+
+
+                    <!-- MONEY -->
+
+                    <div class="stat-box money-box">
+
+                        <span>MONEY</span>
+
+                        <strong id="money">
+                            $100
+                        </strong>
+
+                    </div>
+
+
+                    <!-- QUOTA -->
+
+                    <div class="stat-box quota-box">
+
+                        <span>QUOTA</span>
+
+                        <strong id="quota">
+                            $150
+                        </strong>
+
+                    </div>
+
+
+                    <!-- SPINS -->
+
+                    <div class="stat-box spins-box">
+
+                        <span>SPINS REMAINING</span>
+
+                        <strong id="spins">
+                            10
+                        </strong>
+
+                    </div>
+
+
+                    <!-- UPGRADES -->
+
+                    <div class="upgrade-box">
+
+                        <div class="upgrade-header">
+
+                            <span>
+                                WHEEL MODIFICATIONS
+                            </span>
+
+                            <span id="upgradeCount">
+                                0 / 5
+                            </span>
+
+                        </div>
+
+
+                        <div id="upgradeList" class="upgrade-list">
+
+                            <div class="empty">
+                                NO MODIFICATIONS
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
 
             </div>
 
-            <button id="spinButton">
-                SPIN
-            </button>
 
-            <div id="result">
-                READY?
-            </div>
+            <!-- ROUND -->
 
-        </section>
+            <footer>
 
+                ROUND
+                <span id="round">
+                    1
+                </span>
 
-        <!-- UPGRADES -->
+            </footer>
 
-        <section class="upgrade-section">
+        </main>
 
-            <div class="upgrade-title">
-                <span>YOUR UPGRADES</span>
-                <span id="upgradeCount">0 / 5</span>
-            </div>
-
-            <div id="upgradeList" class="upgrade-list">
-                <div class="empty">
-                    NO UPGRADES
-                </div>
-            </div>
-
-        </section>
+    </div>
 
 
-        <!-- ROUND -->
 
-        <div class="round">
-            ROUND <span id="round">1</span>
-        </div>
-
-    </main>
-
-
-    <!-- GAME OVER SCREEN -->
+    <!-- GAME OVER -->
 
     <div id="gameOver" class="overlay hidden">
 
         <div class="game-over-box">
 
-            <h2>GAME OVER</h2>
+            <div class="dead-light"></div>
+
+            <h2>
+                QUOTA FAILED
+            </h2>
 
             <p id="gameOverReason">
-                YOU FAILED THE QUOTA.
+                YOU RAN OUT OF SPINS.
             </p>
 
             <button id="restartButton">
