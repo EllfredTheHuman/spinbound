@@ -1,265 +1,370 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+
 /* =========================
-   SPINBOUND
-   Pixel Game Style
-   ========================= */
+   RESET
+========================= */
 
 * {
     box-sizing: border-box;
 }
 
+
 body {
     margin: 0;
+
     min-height: 100vh;
 
-    background: #171329;
-    color: #ffffff;
+    background-color: #151326;
 
-    font-family: "Courier New", monospace;
+    color: white;
+
+    font-family: "Press Start 2P", monospace;
 
     display: flex;
     justify-content: center;
     align-items: center;
-}
 
-.game {
-    width: 900px;
-    max-width: 95%;
-
-    text-align: center;
-
-    padding: 40px;
-
-    background: #241d3d;
-
-    border: 6px solid #0c0918;
-
-    box-shadow:
-        10px 10px 0 #0c0918,
-        inset 0 0 0 4px #3b3260;
+    overflow-x: hidden;
 }
 
 
 /* =========================
-   TITLE
-   ========================= */
+   PIXEL BACKGROUND
+========================= */
 
-h1 {
-    margin: 0;
+body::before {
+    content: "";
 
-    font-size: 64px;
-    letter-spacing: 6px;
+    position: fixed;
 
-    color: #ffd84d;
+    inset: 0;
 
-    text-shadow:
-        5px 5px 0 #0c0918;
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            rgba(255,255,255,0.025) 50%,
+            transparent 50%
+        );
+
+    background-size: 100% 6px;
+
+    z-index: -1;
 }
 
-.subtitle {
-    margin-top: 5px;
+
+/* =========================
+   GAME CONTAINER
+========================= */
+
+.game {
+
+    width: 900px;
+
+    max-width: 94%;
+
+    margin: 30px auto;
+
+    padding: 35px;
+
+    background: #24203f;
+
+    border: 8px solid #080711;
+
+    box-shadow:
+        10px 10px 0 #080711,
+        inset 0 0 0 4px #403866;
+
+    text-align: center;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header h1 {
+
+    margin: 0;
+
+    font-size: 52px;
+
+    letter-spacing: 4px;
+
+    color: #ffe45c;
+
+    text-shadow:
+        4px 4px 0 #a23b59,
+        8px 8px 0 #080711;
+}
+
+
+header p {
+
+    margin-top: 20px;
+
     margin-bottom: 35px;
 
-    color: #b9afd9;
+    font-size: 10px;
 
-    font-size: 18px;
+    color: #aaa4c9;
 }
 
 
 /* =========================
    STATS
-   ========================= */
+========================= */
 
 .stats {
+
     display: flex;
 
     justify-content: center;
 
-    gap: 25px;
+    gap: 15px;
 
-    margin-bottom: 35px;
+    margin-bottom: 45px;
 }
 
-.stats div {
-    min-width: 200px;
 
-    padding: 15px;
+.stat {
 
-    background: #171329;
+    flex: 1;
 
-    border: 4px solid #0c0918;
+    max-width: 240px;
 
-    box-shadow: 5px 5px 0 #0c0918;
+    padding: 18px 12px;
+
+    background: #131124;
+
+    border: 5px solid #080711;
+
+    box-shadow: 5px 5px 0 #080711;
 }
 
-.stats span {
+
+.stat span {
+
     display: block;
 
-    font-size: 14px;
+    margin-bottom: 12px;
 
-    color: #aaa1c8;
+    font-size: 9px;
 
-    margin-bottom: 8px;
+    color: #8982aa;
 }
 
-.stats strong {
-    display: block;
 
-    font-size: 32px;
+.stat strong {
 
-    color: #ffffff;
+    font-size: 20px;
+
+    color: white;
 }
 
 
 /* =========================
-   WHEEL
-   ========================= */
+   WHEEL AREA
+========================= */
 
-.wheel-section {
+.wheel-area {
+
     display: flex;
 
     flex-direction: column;
 
     align-items: center;
+
+    position: relative;
 }
 
+
+/* =========================
+   POINTER
+========================= */
+
+.pointer {
+
+    position: absolute;
+
+    top: -24px;
+
+    z-index: 20;
+
+    font-size: 32px;
+
+    color: #ffe45c;
+
+    text-shadow:
+        3px 3px 0 #080711;
+}
+
+
+/* =========================
+   WHEEL
+========================= */
+
 .wheel {
-    width: 300px;
-    height: 300px;
 
-    border-radius: 50%;
+    width: 310px;
 
-    border: 8px solid #0c0918;
+    height: 310px;
 
     position: relative;
 
-    overflow: hidden;
+    border-radius: 50%;
+
+    border: 10px solid #080711;
 
     background:
         conic-gradient(
-            #43d17a 0deg 180deg,
-            #e95757 180deg 360deg
+            #46d477 0deg 180deg,
+            #e64f5c 180deg 360deg
         );
 
     box-shadow:
-        8px 8px 0 #0c0918;
+        8px 8px 0 #080711;
+
+    transition:
+        transform 2.5s cubic-bezier(.12,.8,.18,1);
 }
 
 
-/* Centre circle */
+/* Wheel divider */
 
-.wheel::after {
+.wheel::before {
+
     content: "";
 
     position: absolute;
 
-    width: 55px;
-    height: 55px;
+    width: 6px;
 
-    background: #ffd84d;
+    height: 100%;
 
-    border: 6px solid #0c0918;
-
-    border-radius: 50%;
+    background: #080711;
 
     left: 50%;
+
+    top: 0;
+
+    transform: translateX(-50%);
+}
+
+
+/* =========================
+   WHEEL TEXT
+========================= */
+
+.wheel-text {
+
+    position: absolute;
+
     top: 50%;
 
-    transform: translate(-50%, -50%);
-}
-
-
-/* Wheel text */
-
-.wheel-inner {
-    position: absolute;
-
-    inset: 0;
-
-    display: flex;
-
-    justify-content: space-around;
-
-    align-items: center;
-
-    pointer-events: none;
-}
-
-.wheel-inner span {
-    font-size: 24px;
-
-    font-weight: bold;
-
-    text-shadow: 3px 3px 0 #0c0918;
-}
-
-.wheel-inner span:first-child {
-    transform: translateX(-65px);
-}
-
-.wheel-inner span:last-child {
-    transform: translateX(65px);
-}
-
-
-/* Pointer */
-
-.wheel-pointer {
-    position: absolute;
+    transform: translateY(-50%);
 
     z-index: 5;
 
-    top: -2px;
+    font-size: 18px;
+
+    text-shadow:
+        3px 3px 0 #080711;
+}
+
+
+.win {
+
+    left: 35px;
+}
+
+
+.lose {
+
+    right: 25px;
+}
+
+
+/* =========================
+   WHEEL CENTRE
+========================= */
+
+.wheel-center {
+
+    position: absolute;
+
+    width: 65px;
+
+    height: 65px;
+
     left: 50%;
 
-    transform: translateX(-50%);
+    top: 50%;
 
-    color: #ffd84d;
+    transform: translate(-50%, -50%);
 
-    font-size: 35px;
+    border-radius: 50%;
 
-    text-shadow: 3px 3px 0 #0c0918;
+    background: #ffe45c;
+
+    border: 7px solid #080711;
+
+    z-index: 10;
 }
 
 
 /* =========================
    SPIN BUTTON
-   ========================= */
+========================= */
 
 #spinButton {
-    margin-top: 35px;
 
-    padding: 18px 55px;
+    margin-top: 45px;
+
+    padding: 20px 50px;
 
     font-family: inherit;
 
-    font-size: 28px;
-    font-weight: bold;
+    font-size: 18px;
 
-    color: #171329;
+    color: #151326;
 
-    background: #ffd84d;
+    background: #ffe45c;
 
-    border: 5px solid #0c0918;
+    border: 6px solid #080711;
 
-    box-shadow: 7px 7px 0 #0c0918;
+    box-shadow: 7px 7px 0 #080711;
 
     cursor: pointer;
+
+    transition:
+        transform 0.05s,
+        box-shadow 0.05s;
 }
+
 
 #spinButton:hover {
+
+    background: #fff09a;
+
     transform: translate(3px, 3px);
 
-    box-shadow: 4px 4px 0 #0c0918;
+    box-shadow: 4px 4px 0 #080711;
 }
+
 
 #spinButton:active {
+
     transform: translate(7px, 7px);
 
-    box-shadow: 0 0 0 #0c0918;
+    box-shadow: 0 0 0 #080711;
 }
 
+
 #spinButton:disabled {
-    opacity: 0.5;
+
+    opacity: 0.45;
 
     cursor: not-allowed;
 }
@@ -267,42 +372,50 @@ h1 {
 
 /* =========================
    RESULT
-   ========================= */
+========================= */
 
 #result {
-    min-height: 30px;
 
-    margin-top: 20px;
+    margin-top: 25px;
 
-    font-size: 20px;
+    min-height: 22px;
 
-    font-weight: bold;
+    font-size: 12px;
 
-    color: #ffffff;
+    color: white;
 }
 
 
 /* =========================
    UPGRADES
-   ========================= */
+========================= */
 
-.upgrades {
-    margin-top: 40px;
+.upgrade-section {
+
+    margin-top: 45px;
 
     padding-top: 25px;
 
-    border-top: 4px solid #3b3260;
+    border-top: 5px solid #403866;
 }
 
-.upgrades h2 {
-    margin-top: 0;
 
-    color: #ffd84d;
+.upgrade-title {
 
-    font-size: 24px;
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 18px;
+
+    font-size: 10px;
+
+    color: #ffe45c;
 }
 
-#upgradeList {
+
+.upgrade-list {
+
     display: flex;
 
     justify-content: center;
@@ -310,61 +423,223 @@ h1 {
     flex-wrap: wrap;
 
     gap: 12px;
+
+    min-height: 55px;
 }
 
-#upgradeList p {
-    color: #aaa1c8;
-}
 
-#upgradeList button {
-    padding: 14px 18px;
+.upgrade-list button {
 
-    background: #342b55;
-
-    color: white;
+    padding: 15px;
 
     font-family: inherit;
 
-    font-weight: bold;
+    font-size: 9px;
 
-    border: 4px solid #0c0918;
+    color: white;
 
-    box-shadow: 4px 4px 0 #0c0918;
+    background: #36305b;
+
+    border: 4px solid #080711;
+
+    box-shadow: 4px 4px 0 #080711;
 
     cursor: pointer;
 }
 
-#upgradeList button:hover {
-    background: #45386f;
+
+.upgrade-list button:hover {
+
+    background: #4b4277;
 
     transform: translate(2px, 2px);
 
-    box-shadow: 2px 2px 0 #0c0918;
+    box-shadow: 2px 2px 0 #080711;
+}
+
+
+.empty {
+
+    padding: 15px;
+
+    color: #777191;
+
+    font-size: 9px;
 }
 
 
 /* =========================
-   RESPONSIVE
-   ========================= */
+   ROUND
+========================= */
 
-@media (max-width: 600px) {
+.round {
+
+    margin-top: 30px;
+
+    font-size: 10px;
+
+    color: #777191;
+}
+
+
+.round span {
+
+    color: #ffe45c;
+}
+
+
+/* =========================
+   GAME OVER
+========================= */
+
+.overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(5, 4, 12, 0.88);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    z-index: 100;
+}
+
+
+.hidden {
+
+    display: none;
+}
+
+
+.game-over-box {
+
+    width: 500px;
+
+    max-width: 90%;
+
+    padding: 40px;
+
+    background: #24203f;
+
+    border: 8px solid #080711;
+
+    box-shadow: 10px 10px 0 #080711;
+
+    text-align: center;
+}
+
+
+.game-over-box h2 {
+
+    margin-top: 0;
+
+    font-size: 32px;
+
+    color: #e64f5c;
+
+    text-shadow:
+        4px 4px 0 #080711;
+}
+
+
+.game-over-box p {
+
+    margin: 30px 0;
+
+    font-size: 10px;
+
+    line-height: 2;
+}
+
+
+#restartButton {
+
+    padding: 18px 25px;
+
+    font-family: inherit;
+
+    font-size: 11px;
+
+    color: #151326;
+
+    background: #ffe45c;
+
+    border: 5px solid #080711;
+
+    box-shadow: 5px 5px 0 #080711;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 650px) {
 
     .game {
+
         padding: 20px;
+
     }
 
-    h1 {
-        font-size: 40px;
+
+    header h1 {
+
+        font-size: 32px;
+
     }
+
 
     .stats {
+
         flex-direction: column;
 
         align-items: center;
+
     }
 
-    .wheel {
-        width: 240px;
-        height: 240px;
+
+    .stat {
+
+        width: 100%;
+
     }
+
+
+    .wheel {
+
+        width: 250px;
+
+        height: 250px;
+
+    }
+
+
+    .wheel-text {
+
+        font-size: 14px;
+
+    }
+
+
+    .win {
+
+        left: 25px;
+
+    }
+
+
+    .lose {
+
+        right: 18px;
+
+    }
+
 }
