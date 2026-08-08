@@ -1,1 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Spinbound</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="game">
+
+        <h1>SPINBOUND</h1>
+        <p class="subtitle">How far can you spin?</p>
+
+        <section class="stats">
+            <div>
+                <span>MONEY</span>
+                <strong id="money">$100</strong>
+            </div>
+
+            <div>
+                <span>QUOTA</span>
+                <strong id="quota">$150</strong>
+            </div>
+        </section>
+
+        <section class="wheel-section">
+
+            <div class="wheel">
+                <div class="wheel-pointer">▼</div>
+
+                <div class="wheel-inner">
+                    <span>WIN</span>
+                    <span>LOSE</span>
+                </div>
+            </div>
+
+            <button id="spinButton">SPIN</button>
+
+            <p id="result">Ready?</p>
+
+        </section>
+
+        <section class="upgrades">
+
+            <h2>UPGRADES</h2>
+
+            <div id="upgradeList">
+                <p>No upgrades yet.</p>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
