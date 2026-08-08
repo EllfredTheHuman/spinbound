@@ -1,11 +1,11 @@
-// ========================================
+// =====================================================
 // SPINBOUND
-// ========================================
+// =====================================================
 
 
-// ========================================
-// GAME VARIABLES
-// ========================================
+// =====================================================
+// GAME STATE
+// =====================================================
 
 let money = 100;
 
@@ -18,9 +18,9 @@ let round = 1;
 let spinning = false;
 
 
-// ========================================
+// =====================================================
 // WHEEL STATS
-// ========================================
+// =====================================================
 
 let winChance = 50;
 
@@ -29,18 +29,18 @@ let winPayoutMultiplier = 1;
 let lossMultiplier = 1;
 
 
-// ========================================
+// =====================================================
 // UPGRADES
-// ========================================
+// =====================================================
 
 let upgrades = [];
 
 const MAX_UPGRADES = 5;
 
 
-// ========================================
-// ELEMENTS
-// ========================================
+// =====================================================
+// HTML ELEMENTS
+// =====================================================
 
 const moneyDisplay =
     document.getElementById("money");
@@ -79,34 +79,38 @@ const restartButton =
     document.getElementById("restartButton");
 
 
-// ========================================
+// =====================================================
 // UPDATE SCREEN
-// ========================================
+// =====================================================
 
 function updateScreen() {
 
     moneyDisplay.textContent =
         "$" + Math.floor(money);
 
+
     quotaDisplay.textContent =
         "$" + Math.floor(quota);
+
 
     spinsDisplay.textContent =
         spinsLeft;
 
+
     roundDisplay.textContent =
         round;
+
 
     upgradeCount.textContent =
         upgrades.length + " / " + MAX_UPGRADES;
 
 
-    // Update upgrades
+    // Update upgrade display
 
     if (upgrades.length === 0) {
 
         upgradeList.innerHTML =
-            '<div class="empty">NO UPGRADES</div>';
+            '<div class="empty">NO MODIFICATIONS</div>';
 
         return;
     }
@@ -117,26 +121,25 @@ function updateScreen() {
 
     upgrades.forEach(function(upgrade) {
 
-        const upgradeBox =
+        const box =
             document.createElement("div");
 
-        upgradeBox.className =
+        box.className =
             "empty";
 
-        upgradeBox.textContent =
+        box.textContent =
             upgrade.name;
 
-        upgradeList.appendChild(
-            upgradeBox
-        );
+        upgradeList.appendChild(box);
 
     });
+
 }
 
 
-// ========================================
+// =====================================================
 // SPIN
-// ========================================
+// =====================================================
 
 spinButton.onclick = function() {
 
@@ -155,7 +158,7 @@ spinButton.onclick = function() {
     spinButton.disabled = true;
 
 
-    // Use one spin
+    // One spin consumed
 
     spinsLeft--;
 
@@ -163,68 +166,62 @@ spinButton.onclick = function() {
 
 
     resultDisplay.textContent =
-        "SPINNING...";
+        "THE WHEEL TURNS...";
 
 
-    // ====================================
+    // =================================================
     // DETERMINE RESULT
-    // ====================================
+    // =================================================
 
     const randomNumber =
         Math.random() * 100;
+
 
     const won =
         randomNumber < winChance;
 
 
-    // ====================================
-    // MAKE WHEEL SPIN
-    // ====================================
+    // =================================================
+    // WHEEL ANIMATION
+    // =================================================
 
     const fullSpins =
         5 + Math.floor(Math.random() * 3);
 
 
-    let finalRotation;
+    let landingAngle;
 
 
     if (won) {
 
-        // Green half
-
-        const landingAngle =
-            45 + Math.random() * 130;
-
-        finalRotation =
-            fullSpins * 360 + landingAngle;
+        landingAngle =
+            45 + Math.random() * 120;
 
     } else {
 
-        // Red half
-
-        const landingAngle =
-            225 + Math.random() * 130;
-
-        finalRotation =
-            fullSpins * 360 + landingAngle;
+        landingAngle =
+            225 + Math.random() * 120;
 
     }
+
+
+    const finalRotation =
+        fullSpins * 360 + landingAngle;
 
 
     wheel.style.transform =
         "rotate(" + finalRotation + "deg)";
 
 
-    // ====================================
-    // FINISH SPIN
-    // ====================================
+    // =================================================
+    // FINISH
+    // =================================================
 
     setTimeout(function() {
 
         if (won) {
 
-            const baseWin =
-                50;
+            const baseWin = 50;
 
             const winnings =
                 Math.floor(
@@ -232,22 +229,23 @@ spinButton.onclick = function() {
                     winPayoutMultiplier
                 );
 
+
             money += winnings;
 
 
             resultDisplay.textContent =
-                "WIN! +$" + winnings;
+                "WIN. +$" + winnings;
 
         } else {
 
-            const baseLoss =
-                30;
+            const baseLoss = 30;
 
             const loss =
                 Math.floor(
                     baseLoss *
                     lossMultiplier
                 );
+
 
             money -= loss;
 
@@ -258,16 +256,16 @@ spinButton.onclick = function() {
 
 
             resultDisplay.textContent =
-                "LOSE! -$" + loss;
+                "LOSE. -$" + loss;
         }
 
 
         updateScreen();
 
 
-        // =================================
-        // CHECK QUOTA
-        // =================================
+        // =================================================
+        // QUOTA CHECK
+        // =================================================
 
         if (money >= quota) {
 
@@ -277,14 +275,14 @@ spinButton.onclick = function() {
         }
 
 
-        // =================================
-        // CHECK SPINS
-        // =================================
+        // =================================================
+        // SPIN LIMIT CHECK
+        // =================================================
 
         if (spinsLeft <= 0) {
 
             endGame(
-                "YOU RAN OUT OF SPINS BEFORE REACHING THE QUOTA."
+                "THE QUOTA WAS NOT REACHED IN 10 SPINS."
             );
 
             return;
@@ -295,14 +293,15 @@ spinButton.onclick = function() {
 
         spinButton.disabled = false;
 
+
     }, 2500);
 
 };
 
 
-// ========================================
+// =====================================================
 // COMPLETE ROUND
-// ========================================
+// =====================================================
 
 function completeRound() {
 
@@ -312,7 +311,7 @@ function completeRound() {
 
 
     resultDisplay.textContent =
-        "QUOTA COMPLETE!";
+        "QUOTA REACHED.";
 
 
     setTimeout(function() {
@@ -320,16 +319,19 @@ function completeRound() {
         showUpgradeChoices();
 
     }, 800);
+
 }
 
 
-// ========================================
+// =====================================================
 // NEXT ROUND
-// ========================================
+// =====================================================
 
 function startNextRound() {
 
     round++;
+
+    // NEW ROUND = 10 SPINS
 
     spinsLeft = 10;
 
@@ -354,20 +356,20 @@ function startNextRound() {
 }
 
 
-// ========================================
+// =====================================================
 // POSSIBLE UPGRADES
-// ========================================
+// =====================================================
 
 const possibleUpgrades = [
 
     {
-        name: "+5% WIN",
+        name: "+5% WIN CHANCE",
         type: "winChance",
         value: 5
     },
 
     {
-        name: "+10% WIN",
+        name: "+10% WIN CHANCE",
         type: "winChance",
         value: 10
     },
@@ -411,9 +413,9 @@ const possibleUpgrades = [
 ];
 
 
-// ========================================
-// SHOW 3 RANDOM UPGRADES
-// ========================================
+// =====================================================
+// SHOW THREE RANDOM UPGRADES
+// =====================================================
 
 function showUpgradeChoices() {
 
@@ -469,38 +471,32 @@ function showUpgradeChoices() {
 }
 
 
-// ========================================
+// =====================================================
 // CHOOSE UPGRADE
-// ========================================
+// =====================================================
 
 function chooseUpgrade(upgrade) {
-
-    // Maximum 5 upgrades
 
     if (upgrades.length >= MAX_UPGRADES) {
 
         resultDisplay.textContent =
-            "YOUR WHEEL IS FULL!";
+            "THE WHEEL IS FULL.";
 
         return;
     }
 
 
-    // Add upgrade
-
     upgrades.push(upgrade);
 
 
-    // ====================================
+    // =================================================
     // APPLY UPGRADE
-    // ====================================
+    // =================================================
 
     if (upgrade.type === "winChance") {
 
         winChance += upgrade.value;
 
-
-        // Never allow guaranteed wins
 
         if (winChance > 95) {
 
@@ -542,11 +538,16 @@ function chooseUpgrade(upgrade) {
 
 
         if (winChance > 95) {
+
             winChance = 95;
+
         }
 
+
         if (lossMultiplier < 0.05) {
+
             lossMultiplier = 0.05;
+
         }
 
     }
@@ -560,21 +561,19 @@ function chooseUpgrade(upgrade) {
 
 
         if (winChance > 95) {
+
             winChance = 95;
+
         }
 
     }
 
 
-    // ====================================
-    // START NEXT ROUND
-    // ====================================
-
     updateScreen();
 
 
     resultDisplay.textContent =
-        "UPGRADE EQUIPPED!";
+        "MODIFICATION INSTALLED.";
 
 
     setTimeout(function() {
@@ -586,9 +585,9 @@ function chooseUpgrade(upgrade) {
 }
 
 
-// ========================================
+// =====================================================
 // GAME OVER
-// ========================================
+// =====================================================
 
 function endGame(reason) {
 
@@ -606,9 +605,9 @@ function endGame(reason) {
 }
 
 
-// ========================================
+// =====================================================
 // RESTART
-// ========================================
+// =====================================================
 
 restartButton.onclick = function() {
 
@@ -636,7 +635,7 @@ restartButton.onclick = function() {
 
 
     resultDisplay.textContent =
-        "READY?";
+        "INSERT COURAGE.";
 
 
     gameOver.classList.add("hidden");
@@ -650,8 +649,8 @@ restartButton.onclick = function() {
 };
 
 
-// ========================================
-// START GAME
-// ========================================
+// =====================================================
+// START
+// =====================================================
 
 updateScreen();
